@@ -2,6 +2,7 @@ import './App.css';
 import CounterBox from './components/CounterBox';
 import MemoBox from './components/MemoBox';
 import News from './components/News';
+import NewsSagaBox from './components/NewsSagaBox';
 
 function App() {
   return (
@@ -11,6 +12,8 @@ function App() {
       <MemoBox />
       <hr />
       <News />
+      <hr />
+      <NewsSagaBox />
     </div>
   );
 }

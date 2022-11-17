@@ -1,6 +1,9 @@
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { increase, change } from "../modules/counter";  // 액션 생성함수 임포트
+// 액션 생성함수 임포트
+import { increase, change, 
+        increaseAsync, decreaseAsync,
+        increaseSagaAsync, decreaseSagaAsync } from "../modules/counter";
 
 const CounterBox = () => {
   // useSelector를 통해서 state의 원하는 값을 가져올 수 있다.
@@ -33,6 +36,16 @@ const CounterBox = () => {
       <input type="text" onChange={(e)=>{ dispatch( change(e.target.value) )}}/>
       {/* 익명함수, 화살표 함수로 작성시 렌더될 때마다 함수를 다시 생성 > Callback으로 지정 */}
       <input type="text" onChange={ onChange }/>
+
+      {/* thunk를 이용하여 비동기로 작성 */}
+      <p>thunk를 이용하여 비동기로 작성</p>
+      <button onClick={() => { dispatch(increaseAsync())} }>1초 뒤 증가</button>
+      <button onClick={() => { dispatch(decreaseAsync())} }>2초 뒤 감소</button>
+
+      {/* saga를 이용하여 1초뒤 증가하는 버튼, 2초 뒤 감소하는 버튼 */}
+      <p>saga</p>
+      <button onClick={() => { dispatch(increaseSagaAsync())} }>1초 뒤 증가</button>
+      <button onClick={() => { dispatch(decreaseSagaAsync())} }>2초 뒤 감소</button>
     </div>
   );
 };
