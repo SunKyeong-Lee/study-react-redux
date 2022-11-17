@@ -16,8 +16,25 @@ export const getNews = () => async (dispatch, getState) => {
   );
   const body = await response.json();
   if (body.status == "ok") {
-    dispatch({ type: "GET_NEWS", payload: body.ariles });
+    dispatch({ type: "GET_NEWS", payload: body.articles  });
   }
 
   dispatch({ type: "END_LOAD" });
 };
+
+// 리듀서 함수 작성
+const news = (state = initalState, action) => {
+  switch (action.type) {
+    case "GET_NEWS":
+      // 값이 다 들어왔다고 생각하고 작성
+      return { ...state, news: action.payload };
+    case "START_LOAD":
+      return { ...state, loading: true };
+    case "END_LOAD":
+      return { ...state, loading: false };
+    default:
+      return state;
+  }
+};
+
+export default news;

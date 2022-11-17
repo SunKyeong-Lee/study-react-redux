@@ -16,11 +16,12 @@ import rootReducer from "./modules";         // rootReducer를 통해 한 번에
 // 미들웨어 작성 및 설치 후 추가
 // import loggerMiddleware from './lib/loggerMiddleware';
 import logger from "redux-logger";
+import thunk from "redux-thunk";
 
 // createStore를 이용하여 store 생성
 // const store = createStore(counter);
 // const store = createStore(rootReducer, applyMiddleware(loggerMiddleware));
-const store = createStore(rootReducer, applyMiddleware(logger));
+const store = createStore(rootReducer, applyMiddleware(logger, thunk));
 console.log(store.getState()); // 현재 store 안에 들어있는 상태를 조회
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
